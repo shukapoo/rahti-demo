@@ -15,7 +15,7 @@ This demo repository shows how to deploy your first python application in Rahti 
    * Set ENV variable as APP_FILE=src/app.py in deployment config
 7. Select the "Overview" tab from the menu on the left to find the application
    deployment and a URL that has been created to point to it.
-8. You can now configure GitHub webhook for your application, this will trigger your application builds automatically when there are push events in your GitHub code.[Instructions](https://docs.openshift.com/container-platform/3.5/dev_guide/builds/triggering_builds.html#github-webhooks)
+8. You can now configure GitHub webhook for your application, this will trigger your application builds automatically when there are push events in your GitHub code. [Instructions.](https://docs.openshift.com/container-platform/3.5/dev_guide/builds/triggering_builds.html#github-webhooks)
 9. Configure horizontal pod scaler. Using horizantal pod scaler, OpenShift platform like Rahti can scale up your application pods depending upon pods computational metrics like CPU usage. You can set Autoscaler definition on Rahti WebUI using Deployments>Your Application Name >Autoscale
 10. Run load against your webservice & check if autoscaling works! You can use example load bash script from this repo, usage
 
