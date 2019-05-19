@@ -1,6 +1,6 @@
 # Rahti 0 to 1
 
-This demo repository shows how to deploy your first python application in Rahti directly from GitHub (using S2I utility). Further in this demo we explore some advance features/utilities of Rahti platform like auto-trigerring builds of applications, pod auto scaling etc.
+This demo repository shows how to deploy your application in Rahti (Container Cloud based on OpenShift) directly from GitHub (using S2I utility). Further, in this demo we explore some advance features/utilities of Rahti platform like auto-triggering builds, pod auto scaling etc.
 
 ## From Rahti Web Interface
 1. Create a new project with the "Create Project" button.
@@ -16,14 +16,14 @@ This demo repository shows how to deploy your first python application in Rahti 
 7. Select the "Overview" tab from the menu on the left to find the application
    deployment and a URL that has been created to point to it.
 8. You can now configure GitHub webhook for your application, this will trigger your application builds automatically when there are push events in your GitHub code. [Instructions.](https://docs.openshift.com/container-platform/3.5/dev_guide/builds/triggering_builds.html#github-webhooks)
-9. Configure horizontal pod scaler. Using horizantal pod scaler, OpenShift platform like Rahti can scale up your application pods depending upon pods computational metrics like CPU usage. You can set Autoscaler definition on Rahti WebUI using Deployments>Your Application Name >Autoscale
+9. Configure horizontal pod scaler. Using horizontal pod scaler, OpenShift platform like Rahti can scale up your application pods depending upon pods computational metrics like CPU usage. You can set Autoscaler definition on Rahti WebUI using Deployments>Your Application Name >Autoscale
 10. Run load against your webservice & check if autoscaling works! You can use example load bash script from this repo, usage
 
 ```bash
 bash load.sh <your-application-url>
  ```
 ## Using OC Command Line tool
-1. Download & Install OC CLI tool [Instructions](https://docs.okd.io/latest/cli_reference/get_started_cli.html)
+1. Download & Install OC CLI tool. [Instructions.](https://docs.okd.io/latest/cli_reference/get_started_cli.html)
 2. Login to Rahti using the `oc login` command. You can find
    instructions in the [Rahti documentation](https://rahti.csc.fi/usage/cli/):
 
@@ -46,11 +46,14 @@ oc new-app https://github.com/shukapoo/rahti-demo.git --name web-demo -e APP_FIL
 ```bash
 oc create route edge demo-route --insecure-policy='Redirect' --service web-demo
 ```
-6. Configure GitHub WebHooks
-You can setup GitHub webhooks, this will trigger your application builds automatically when you push changes to your GitHub code.Please follow instructions [here](https://docs.openshift.com/container-platform/3.5/dev_guide/builds/triggering_builds.html#github-webhooks) to setup your GitHub webhook.
+6. You can now setup GitHub webhooks, this will trigger your application builds automatically when you push changes to your GitHub code. Please follow instructions [here](https://docs.openshift.com/container-platform/3.5/dev_guide/builds/triggering_builds.html#github-webhooks) to setup your GitHub webhook.
 
-7. Configure horizantal pod Autoscaler. Using horizantal pod scaler, OpenShift platform like Rahti can scale up your application pods depending upon pods computational metrics like CPU usage.
+7. Configure horizontal pod Autoscaler. Using horizontal pod scaler, OpenShift platform like Rahti can scale up your application pods depending upon pods computational metrics like CPU usage.
  ```bash
    oc autoscale dc/<your-application-name> --min 1 --max 3 --cpu-percent=10
    ```
+8. Run load against your webservice & check if autoscaling works! You can use example load bash script from this repo, usage
 
+```bash
+bash load.sh <your-application-url>
+ ```
