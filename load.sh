@@ -1,16 +1,6 @@
 #!/bin/bash
-
-if [ -z $1 ]; then
-  echo "Usage: load.sh <url>"
-  exit 1
-fi
-
-# Modify sleeptime for more cpu load
-sleeptime=2.0
-
 for i in {1..5000}
 do
-   curl $1 && echo "" &
-   echo "Curled $1 $i times. Sleeping $sleeptime"
-   sleep $sleeptime
+   echo "Curled $i times"
+   curl $1
 done
